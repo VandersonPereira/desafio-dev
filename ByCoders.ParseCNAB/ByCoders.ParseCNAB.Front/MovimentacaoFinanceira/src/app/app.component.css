@@ -1,0 +1,39 @@
+#menu {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+#menu ul{
+    list-style: none;
+    padding: 0;
+    background-color: #fff;
+}
+
+#menu ul li{
+    display: inline;
+}
+
+#menu ul li a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+    color: #000;
+    font-weight: 700;
+    transition:  0.2s linear;
+}
+
+#menu ul li a:hover{
+   background-color: #00acd7;
+   color: #fff;
+}
+
+#menu ul li a.ativo {
+    background-color: #00acd7;
+    color: #fff;
+}
+
+

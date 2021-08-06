@@ -1,0 +1,101 @@
+div.paralelograma {
+    background: #00acd7;
+    width: 1000px;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.movimentacoes {
+    display: grid;
+    background: #fff;
+    padding: 30px 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.movimentacoes h1{
+    display: grid;
+}
+
+table { 
+	width: 750px; 
+	border-collapse: collapse; 
+	margin:50px auto;
+}
+
+tr:nth-of-type(odd) { 
+	background: #eee; 
+}
+
+th { 
+	background: #00acd7; 
+	color: white; 
+	font-weight: bold; 
+}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: left; 
+	font-size: 18px;
+}
+
+table tbody#saldo tr {
+	background: #00acd7;
+	color: white;
+	font-weight: bold; 
+}
+
+@media only screen and (max-width: 1080px) {
+    div.paralelograma {
+        height: 690px;
+    }
+}
+
+@media 
+only screen and (max-width: 1300px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table { 
+	  	width: 100%; 
+	}
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		content: attr(data-column);
+		color: #000;
+		font-weight: bold;
+	}
+}

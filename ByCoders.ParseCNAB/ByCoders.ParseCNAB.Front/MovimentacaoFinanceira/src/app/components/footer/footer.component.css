@@ -1,0 +1,11 @@
+footer {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 20px;
+}

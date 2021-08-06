@@ -1,0 +1,52 @@
+<div class="paralelograma">
+
+    <div class="movimentacoes">
+        <h1>Movimentações Financeiras</h1>
+        <table>
+            <thead>
+                <th>
+                    Tipo Transação
+                </th>
+                <th>
+                    Data Ocorrência
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    CPF
+                </th>
+                <th>
+                    Cartão
+                </th>
+                <th>
+                    Dono da Loja
+                </th>
+                <th>
+                    Nome da Loja
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movimentacao of movimentacoes">
+                    <td>{{movimentacao.tipoTransacao}}</td>
+                    <td>{{movimentacao.dataOcorrencia | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{movimentacao.valor  | currency:'BRL'}}</td>
+                    <td>{{movimentacao.cpf}}</td>
+                    <td>{{movimentacao.cartao}}</td>
+                    <td>{{movimentacao.donoLoja}}</td>
+                    <td>{{movimentacao.nomeLoja}}</td>
+                </tr>
+            </tbody>
+            <tbody id="saldo">
+                <tr>
+                    <td colspan="2">
+                        Saldo em Conta
+                    </td>
+                    <td colspan="7">
+                        {{total | currency:'BRL'}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
