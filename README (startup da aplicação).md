@@ -41,11 +41,17 @@ Nessa página, você terá acesso a todas as rotas da api.
 
 Estando no Visual Studio Community (ou outra versão), selecione o *ByCoders.ParseCNAB.API* como *Startup Project*, e clique em play.
 
-Para a aplicação do front, dentro da pasta dele, abar qualquer terminal e execute *ng serve*.
+Para a aplicação do front, dentro da pasta dela, abra qualquer terminal e execute *ng serve*.
 
-O aplicação de front, consiste em duas telas:
+A aplicação de front, consiste em três telas:
+* Login;
 * Uma para cadastro dos arquivos de CNAB;
 * Uma para listar os dados das movimentações salvas;
 
-Para navegar entre elas, basta utilizar o menu superior.
+Por defaulr, a primeira tela sempre será a de login.
+Após se autenticar, você poderá navegar entre as telas, utilizando o menu superior.
+
+### Usuário para login
+email: administrador@email.com
+senha: 12345
 
