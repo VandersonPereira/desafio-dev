@@ -36,4 +36,16 @@
     color: #fff;
 }
 
+div#loading {
+    display: none;
+	width:66%;
+	height:100%;
+	position:absolute;
+	background-color:rgba(0,0, 0, 0.1);
+}
 
+div#loading img {
+    position:absolute;
+    top: 20%;
+    left: 35%;
+}

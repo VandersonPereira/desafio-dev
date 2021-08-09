@@ -18,7 +18,7 @@ namespace ByCoders.ParseCNAB.Dados.Mapeamentos
 
             builder.Property(x => x.Natureza)
                 .IsRequired()
-                .HasColumnType("VARCHAR(50)");
+                .HasColumnType("INT");
         }
     }
 }

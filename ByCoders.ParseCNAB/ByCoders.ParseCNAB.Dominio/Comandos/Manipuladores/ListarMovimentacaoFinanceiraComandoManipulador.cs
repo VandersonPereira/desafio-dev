@@ -1,8 +1,6 @@
 ﻿using ByCoders.ParseCNAB.Dominio.Comandos.Entradas;
 using ByCoders.ParseCNAB.Dominio.Comandos.Resultados;
 using ByCoders.ParseCNAB.Dominio.Compartilhado.Comandos;
-using ByCoders.ParseCNAB.Dominio.Entidades;
-using ByCoders.ParseCNAB.Dominio.ObjetosDeValor;
 using ByCoders.ParseCNAB.Dominio.Repositorios;
 using Flunt.Notifications;
 using System;
@@ -32,10 +30,10 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Manipuladores
                     {
                         var movimentacaoFinanceiraResultado = new MovimentacaoFinanceiraResultado();
                         movimentacaoFinanceiraResultado.TipoTransacao = movimentacao.TipoTransacao.Descricao;
-                        movimentacaoFinanceiraResultado.Natureza = movimentacao.TipoTransacao.Natureza;
+                        movimentacaoFinanceiraResultado.Natureza = Convert.ToInt32(movimentacao.TipoTransacao.Natureza);
                         movimentacaoFinanceiraResultado.DataOcorrencia = movimentacao.DataOcorrencia.Data;
                         movimentacaoFinanceiraResultado.Valor = movimentacao.Valor;
-                        movimentacaoFinanceiraResultado.CPF = movimentacao.CPF;
+                        movimentacaoFinanceiraResultado.CPF = movimentacao.CPF.Numero;
                         movimentacaoFinanceiraResultado.Cartao = movimentacao.Cartao;
                         movimentacaoFinanceiraResultado.DonoLoja = movimentacao.DonoLoja;
                         movimentacaoFinanceiraResultado.NomeLoja = movimentacao.NomeLoja;

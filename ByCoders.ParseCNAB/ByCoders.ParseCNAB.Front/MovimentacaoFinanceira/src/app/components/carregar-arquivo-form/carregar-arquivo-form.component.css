@@ -89,7 +89,7 @@ button:hover {
 }
 
 @media only screen and (max-width: 1080px) {
-    div.paralelograma {
+    div.paralelograma, #principal {
         height: 690px;
     }
 }

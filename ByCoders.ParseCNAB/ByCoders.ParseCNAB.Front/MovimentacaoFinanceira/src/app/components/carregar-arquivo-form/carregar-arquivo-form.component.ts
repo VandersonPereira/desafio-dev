@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppComponent }  from 'src/app/app.component';
 
 @Component({
   selector: 'app-carregar-arquivo-form',
@@ -12,6 +13,7 @@ export class CarregarArquivoFormComponent implements OnInit {
 
   evento: any;
   dados: any;
+  appComponent = new AppComponent();
 
   ngOnInit(): void {
   }
@@ -22,10 +24,12 @@ export class CarregarArquivoFormComponent implements OnInit {
 
   carregarArquivo(){
 
-  if(this.evento == null){
-    alert('Por favor, adicione um arquivo antes!');
-    return;
-  }
+    if(this.evento == null){
+      alert('Por favor, adicione um arquivo antes!');
+      return;
+    }
+
+    this.appComponent.abrirLoading();
 
     if (this.evento.target.files &&  this.evento.target.files[0]){
 
@@ -38,11 +42,14 @@ export class CarregarArquivoFormComponent implements OnInit {
           {
             this.dados = resposta['dados'];
             alert(this.dados.mensagem);
+            this.appComponent.fecharLoading();
           }, erro => {
+            this.appComponent.fecharLoading();
             alert('Não foi possível carregar o seu arquivo. Por favor, tente de novo mais tarde!');
           });
     }
     else{
+      this.appComponent.fecharLoading();
       alert('Por favor, adicione um arquivo antes!');
     }
   }

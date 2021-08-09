@@ -18,7 +18,7 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Resultados
     public class MovimentacaoFinanceiraResultado
     {
         public string TipoTransacao { get; set; }
-        public string Natureza { get; set; }
+        public int Natureza { get; set; }
         public DateTime DataOcorrencia { get; set; }
         public decimal Valor { get; set; }
         public string CPF { get; set; }

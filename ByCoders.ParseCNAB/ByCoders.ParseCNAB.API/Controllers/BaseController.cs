@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace ByCoders.ParseCNAB.API.Controllers
 {
-    //[Route("api/[controller]")]
-    //[ApiController]
     public class BaseController : Controller
     {
         private readonly IUow _uow;

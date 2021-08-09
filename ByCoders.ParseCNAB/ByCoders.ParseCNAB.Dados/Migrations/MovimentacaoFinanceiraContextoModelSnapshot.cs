@@ -26,10 +26,6 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(11)");
-
                     b.Property<string>("Cartao")
                         .IsRequired()
                         .HasColumnType("VARCHAR(20)");
@@ -66,9 +62,8 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<string>("Natureza")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
+                    b.Property<int>("Natureza")
+                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -79,55 +74,55 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                         {
                             Id = 1,
                             Descricao = "Débito",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 2,
                             Descricao = "Boleto",
-                            Natureza = "Saída"
+                            Natureza = 2
                         },
                         new
                         {
                             Id = 3,
                             Descricao = "Financiamento",
-                            Natureza = "Saída"
+                            Natureza = 2
                         },
                         new
                         {
                             Id = 4,
                             Descricao = "Crédito",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 5,
                             Descricao = "Recebimento Empréstimo",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 6,
                             Descricao = "Vendas",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 7,
                             Descricao = "Recebimento TED",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 8,
                             Descricao = "Recebimento DOC",
-                            Natureza = "Entrada"
+                            Natureza = 1
                         },
                         new
                         {
                             Id = 9,
                             Descricao = "Aluguel",
-                            Natureza = "Saída"
+                            Natureza = 2
                         });
                 });
 
@@ -138,6 +133,26 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                         .HasForeignKey("TipoTransacaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("ByCoders.ParseCNAB.Dominio.ObjetosDeValor.CPF", "CPF", b1 =>
+                        {
+                            b1.Property<int>("MovimentacaoFinanaceiraId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<string>("Numero")
+                                .IsRequired()
+                                .HasColumnType("VARCHAR(11)")
+                                .HasColumnName("CPF");
+
+                            b1.HasKey("MovimentacaoFinanaceiraId");
+
+                            b1.ToTable("MovimentacoesFinanceiras");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MovimentacaoFinanaceiraId");
+                        });
 
                     b.OwnsOne("ByCoders.ParseCNAB.Dominio.ObjetosDeValor.DataOcorrencia", "DataOcorrencia", b1 =>
                         {
@@ -157,6 +172,8 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("MovimentacaoFinanaceiraId");
                         });
+
+                    b.Navigation("CPF");
 
                     b.Navigation("DataOcorrencia");
 

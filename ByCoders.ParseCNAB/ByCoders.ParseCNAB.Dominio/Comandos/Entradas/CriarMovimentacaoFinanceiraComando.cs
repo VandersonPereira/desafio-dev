@@ -4,8 +4,6 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Entradas
 {
     public class CriarMovimentacaoFinanceiraComando : IComando
     {
-        // INFORMAÇÕES QUE CHEGARAM PELA CONTROLLER E SERÃO ENCAMINHADAS PARA O MANIPULADOR
-
         public int TipoTransacaoId { get; set; }
         public decimal Valor { get; set; }
         public string CPF { get; set; }

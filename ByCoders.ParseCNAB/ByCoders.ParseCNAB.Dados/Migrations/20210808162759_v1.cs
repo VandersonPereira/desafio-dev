@@ -14,7 +14,7 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Descricao = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    Natureza = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                    Natureza = table.Column<int>(type: "INT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +30,7 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                     DataOcorrencia = table.Column<DateTime>(type: "DATETIME", nullable: true),
                     TipoTransacaoId = table.Column<int>(type: "INT", nullable: false),
                     Valor = table.Column<decimal>(type: "MONEY", nullable: false),
-                    CPF = table.Column<string>(type: "VARCHAR(11)", nullable: false),
+                    CPF = table.Column<string>(type: "VARCHAR(11)", nullable: true),
                     Cartao = table.Column<string>(type: "VARCHAR(20)", nullable: false),
                     DonoLoja = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     NomeLoja = table.Column<string>(type: "VARCHAR(50)", nullable: false)
@@ -51,15 +51,15 @@ namespace ByCoders.ParseCNAB.Dados.Migrations
                 columns: new[] { "Id", "Descricao", "Natureza" },
                 values: new object[,]
                 {
-                    { 1, "Débito", "Entrada" },
-                    { 2, "Boleto", "Saída" },
-                    { 3, "Financiamento", "Saída" },
-                    { 4, "Crédito", "Entrada" },
-                    { 5, "Recebimento Empréstimo", "Entrada" },
-                    { 6, "Vendas", "Entrada" },
-                    { 7, "Recebimento TED", "Entrada" },
-                    { 8, "Recebimento DOC", "Entrada" },
-                    { 9, "Aluguel", "Saída" }
+                    { 1, "Débito", 1 },
+                    { 2, "Boleto", 2 },
+                    { 3, "Financiamento", 2 },
+                    { 4, "Crédito", 1 },
+                    { 5, "Recebimento Empréstimo", 1 },
+                    { 6, "Vendas", 1 },
+                    { 7, "Recebimento TED", 1 },
+                    { 8, "Recebimento DOC", 1 },
+                    { 9, "Aluguel", 2 }
                 });
 
             migrationBuilder.CreateIndex(

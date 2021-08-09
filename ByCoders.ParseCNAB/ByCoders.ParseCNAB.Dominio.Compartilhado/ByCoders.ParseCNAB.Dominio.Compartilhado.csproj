@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Configs\" />
-    <Folder Include="Enumeradores\" />
   </ItemGroup>
 
   <ItemGroup>

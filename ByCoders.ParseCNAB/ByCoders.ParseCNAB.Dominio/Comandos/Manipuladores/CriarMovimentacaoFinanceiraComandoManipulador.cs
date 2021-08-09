@@ -26,10 +26,11 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Manipuladores
             {
                 var tipoTransacao = comando.TipoTransacaoId;
                 var dataOcorrencia = new DataOcorrencia(DateTime.Now);
+                var cpf = new CPF(comando.CPF);
 
-                var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, tipoTransacao, dataOcorrencia, comando.Valor, comando.CPF, comando.Cartao, comando.DonoLoja, comando.NomeLoja);
+                var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, tipoTransacao, dataOcorrencia, comando.Valor, cpf, comando.Cartao, comando.DonoLoja, comando.NomeLoja);
 
-                AddNotifications(dataOcorrencia.Notifications);
+                AddNotifications(movimentacaoFinanceira.Notifications);
 
                 if (!IsValid)
                     return null;
@@ -85,7 +86,7 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Manipuladores
                     var tipoTransacaoId = Convert.ToInt32(linhaArquivo.Substring(0, 1));
                     var dataOcorrencia = new DataOcorrencia(segundo, minuto, hora, dia, mes, ano);
                     var valor = Convert.ToDecimal(linhaArquivo.Substring(9, 9)) / 100;
-                    var cpf = linhaArquivo.Substring(19, 11);
+                    var cpf = new CPF (linhaArquivo.Substring(19, 11));
                     var cartao = linhaArquivo.Substring(30, 12);
                     var donoLoja = linhaArquivo.Substring(48, 14).Trim();
                     var nomeLoja = linhaArquivo.Substring(62).Trim();

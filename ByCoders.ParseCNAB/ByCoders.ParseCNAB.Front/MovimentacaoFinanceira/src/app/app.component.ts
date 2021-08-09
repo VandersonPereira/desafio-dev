@@ -10,4 +10,12 @@ export class AppComponent {
   constructor() { }
 
   title = 'MovimentacaoFinanceira';
+
+  abrirLoading(){
+    document.getElementById('loading').style.display = "block";
+  }
+
+  fecharLoading(){
+    document.getElementById('loading').style.display = "none";
+  }
 }

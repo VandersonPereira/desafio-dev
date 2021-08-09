@@ -19,13 +19,11 @@ namespace ByCoders.ParseCNAB.Dados.Contextos
         {
             modelBuilder.Ignore<Notification>();
             modelBuilder.Ignore<DataOcorrencia>();
+            modelBuilder.Ignore<CPF>();
             modelBuilder.ApplyConfiguration(new MovimentacaoFinanceiraMapeamento());
             modelBuilder.ApplyConfiguration(new TipoTransacaoMapeamento());
 
             modelBuilder.SeeData();
-
-            // TODO: VERIFICAR SE É NECESSÁRIO ESSE TRECHO DE CÓDIGO
-            //base.OnModelCreating(modelBuilder);
         }
     }
 }

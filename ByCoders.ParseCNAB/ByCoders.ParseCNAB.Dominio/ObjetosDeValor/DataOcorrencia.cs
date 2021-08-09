@@ -13,14 +13,17 @@ namespace ByCoders.ParseCNAB.Dominio.ObjetosDeValor
         {
             AddNotifications(new Contract<DataOcorrencia>()
                 .Requires()
-                .IsNullOrEmpty(string.Empty, "Segundo", "As posições de 46 até 47, devem conter um valor válido para os segundos.")
-                .IsNullOrEmpty(string.Empty, "Minuto", "As posições de 44 até 45, devem conter um valor válido para os minutos.")
-                .IsNullOrEmpty(string.Empty, "Hora", "As posições de 42 até 43, devem conter um valor válido para as horas.")
-                .IsNullOrEmpty(string.Empty, "Dia", "As posições de 7 até 8, devem conter um valor válido para o dia.")
-                .IsNullOrEmpty(string.Empty, "Mês", "As posições de 5 até 6, devem conter um valor válido para o mês.")
-                .IsNullOrEmpty(string.Empty, "Ano", "As posições de 1 até 4, devem conter um valor válido para o ano."));
+                .IsNotNull(segundo, "Segundo", "As posições de 46 até 47, devem conter um valor válido para os segundos.")
+                .IsNotNull(minuto, "Minuto", "As posições de 44 até 45, devem conter um valor válido para os minutos.")
+                .IsNotNull(hora, "Hora", "As posições de 42 até 43, devem conter um valor válido para as horas.")
+                .IsNotNull(dia, "Dia", "As posições de 7 até 8, devem conter um valor válido para o dia.")
+                .IsNotNull(mes, "Mês", "As posições de 5 até 6, devem conter um valor válido para o mês.")
+                .IsNotNull(ano, "Ano", "As posições de 1 até 4, devem conter um valor válido para o ano."));
 
             Data = MontarData(segundo, minuto, hora, dia, mes, ano);
+
+            if (Data > DateTime.Now)
+                AddNotification(new Notification("Data", "A data não pode ser superior a atual!"));
         }
 
         public DataOcorrencia(DateTime dataOcorrencia)
@@ -29,7 +32,10 @@ namespace ByCoders.ParseCNAB.Dominio.ObjetosDeValor
 
             AddNotifications(new Contract<DataOcorrencia>()
                 .Requires()
-                .IsNullOrEmpty(string.Empty, "Data Ocorrência", "A data deve ser informada."));
+                .IsNotNull(dataOcorrencia, "Data Ocorrência", "A data deve ser informada."));
+
+            if (Data > DateTime.Now.AddDays(1))
+                AddNotification(new Notification("Data", "A data não pode ser superior a atual!"));
         }
 
         public DateTime Data { get; private set; }
