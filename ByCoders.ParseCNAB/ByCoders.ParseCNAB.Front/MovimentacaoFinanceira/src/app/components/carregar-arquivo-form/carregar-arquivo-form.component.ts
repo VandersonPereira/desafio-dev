@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppComponent }  from 'src/app/app.component';
 
 @Component({
@@ -29,6 +29,13 @@ export class CarregarArquivoFormComponent implements OnInit {
       return;
     }
 
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var token = currentUser.token;
+
+    var headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`)
+    .set('Access-Control-Allow-Origin', '*');
+    
     this.appComponent.abrirLoading();
 
     if (this.evento.target.files &&  this.evento.target.files[0]){
@@ -37,7 +44,7 @@ export class CarregarArquivoFormComponent implements OnInit {
       const formData = new FormData();
       formData.append('arquivo', arquivo);
 
-      this.http.post('https://localhost:44314/api/v1/movimentacao-financeira/upload-arquivo', formData)
+      this.http.post('https://localhost:44314/api/v1/movimentacao-financeira/upload-arquivo', formData, { 'headers' : headers})
         .subscribe(resposta =>
           {
             this.dados = resposta['dados'];

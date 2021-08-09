@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace ByCoders.ParseCNAB.API.Controllers
 {
     [Route("api")]
-    //[Authorize]
     public class MovimentacaoFinanceiraController : BaseController
     {
         private readonly CriarMovimentacaoFinanceiraComandoManipulador _manipuladorCriacao;
@@ -35,6 +34,7 @@ namespace ByCoders.ParseCNAB.API.Controllers
 
         // GET: v1/movimentacao-financeira
         [HttpGet]
+        [Authorize]
         [Route("v1/movimentacao-financeira")]
         public async Task<IActionResult> Listar()
         {

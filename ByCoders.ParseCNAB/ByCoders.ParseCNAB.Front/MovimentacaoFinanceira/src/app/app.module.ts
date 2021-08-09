@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { CarregarArquivoFormComponent } from './components/carregar-arquivo-form/carregar-arquivo-form.component';
 import { MovimentacaoFinanceiraComponent } from './components/movimentacao-financeira/movimentacao-financeira.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     CarregarArquivoFormComponent,
-    MovimentacaoFinanceiraComponent
+    MovimentacaoFinanceiraComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

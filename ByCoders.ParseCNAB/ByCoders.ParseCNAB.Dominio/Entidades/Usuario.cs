@@ -4,7 +4,6 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -80,7 +79,7 @@ namespace ByCoders.ParseCNAB.Dominio.Entidades
                     new Claim(ClaimTypes.Email, Email),
                     new Claim(ClaimTypes.NameIdentifier, Id.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(3),
+                Expires = DateTime.UtcNow.AddDays(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

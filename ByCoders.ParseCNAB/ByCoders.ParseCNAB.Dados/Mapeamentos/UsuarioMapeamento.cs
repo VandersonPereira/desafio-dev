@@ -6,7 +6,6 @@ namespace ByCoders.ParseCNAB.Dados.Mapeamentos
 {
     public class UsuarioMapeamento : IEntityTypeConfiguration<Usuario>
     {
-        // TODO: 1- IGNORAR NOTIFICAÇÕES (validações no construtor);
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder.ToTable("Usuarios")

@@ -1,0 +1,22 @@
+<div class="paralelograma">
+    <section>
+        <h1>Login</h1>
+        <form action="#" method="POST">
+            <fieldset>
+                <div class="container">
+                    <input type="email" [(ngModel)] = "email" required name="email" autofocus/>
+                    <label for="email">E-mail</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="container">
+                    <input type="password" [(ngModel)] = "senha" required name="senha" autofocus/>
+                    <label for="senha">Senha</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <button (click)="fazerLogin()">Entrar</button>
+            </fieldset>
+        </form>
+    </section>
+</div>

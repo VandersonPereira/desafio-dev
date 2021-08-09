@@ -53,8 +53,17 @@ namespace ByCoders.ParseCNAB.Dominio.Comandos.Manipuladores
                 #region Salvando arquivo no servidor
                 var arquivo = comando.Arquivo;
 
-                if (arquivo.Length <= 0)
+                if (Path.GetExtension(comando.Arquivo.FileName) != ".txt")
+                {
+                    AddNotification(new Notification("Arquivo", "Extensão errada. Utlizar .txt"));
                     return null;
+                }
+
+                if (arquivo.Length <= 0)
+                {
+                    AddNotification(new Notification("Arquivo", "Houve um erro interno."));
+                    return null;
+                }
 
                 var nomePasta = Path.Combine("Arquivos", "Movimentação Financeira");
                 var nomePastaParaSalvar = Path.Combine(Directory.GetCurrentDirectory(), nomePasta);

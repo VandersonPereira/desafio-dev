@@ -6,7 +6,6 @@ namespace ByCoders.ParseCNAB.Dados.Mapeamentos
 {
     public class MovimentacaoFinanceiraMapeamento : IEntityTypeConfiguration<MovimentacaoFinanaceira>
     {
-        // TODO: 1- IGNORAR NOTIFICAÇÕES (validações no construtor) 2- DESCOBRIR COMO COLOCAR O CPF E O DATAOCORRENCIA COMO NOTNULL NO BANCO;
         public void Configure(EntityTypeBuilder<MovimentacaoFinanaceira> builder)
         {
             builder.ToTable("MovimentacoesFinanceiras")

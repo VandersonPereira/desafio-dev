@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppComponent }  from 'src/app/app.component';
 
 @Component({
@@ -21,7 +21,17 @@ export class MovimentacaoFinanceiraComponent implements OnInit {
 
     this.appComponent.abrirLoading();
 
-    this.http.get('https://localhost:44314/api/v1/movimentacao-financeira/')
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var token = currentUser.token;
+
+    var headers = new HttpHeaders()
+    .set('content-type', 'application/json')
+    .set('Authorization', `Bearer ${token}`)
+    .set('Access-Control-Allow-Origin', '*');
+
+    console.log(`Bearer ${token}`)
+
+    this.http.get('https://localhost:44314/api/v1/movimentacao-financeira/', { 'headers' : headers})
         .subscribe(resposta => {
 
             this.dados = resposta['dados'];
@@ -32,8 +42,6 @@ export class MovimentacaoFinanceiraComponent implements OnInit {
             }
 
             this.movimentacoes = this.dados.movimentacoes;
-            console.log('era pra fechar')
-            
             this.movimentacoes.forEach(movimentacao => {
 
               if(movimentacao.natureza === 2){

@@ -6,7 +6,6 @@ namespace ByCoders.ParseCNAB.Dados.Mapeamentos
 {
     public class TipoTransacaoMapeamento : IEntityTypeConfiguration<TipoTransacao>
     {
-        // TODO: 1- IGNORAR NOTIFICAÇÕES (validações no construtor);
         public void Configure(EntityTypeBuilder<TipoTransacao> builder)
         {
             builder.ToTable("TiposTransacao")

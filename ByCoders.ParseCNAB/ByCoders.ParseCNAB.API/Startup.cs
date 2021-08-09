@@ -1,4 +1,4 @@
-using ByCoders.ParseCNAB.Dados.Contextos;
+ï»¿using ByCoders.ParseCNAB.Dados.Contextos;
 using ByCoders.ParseCNAB.Dados.Repositorios;
 using ByCoders.ParseCNAB.Dados.Transacoes;
 using ByCoders.ParseCNAB.Dominio.Comandos.Manipuladores;
@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Linq;
 using System.Text;
 
@@ -30,30 +31,6 @@ namespace ByCoders.ParseCNAB.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
-            services.AddSwaggerGen(x =>
-            {
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Movimentação Financeira - ByCoders_", Version = "v1" });
-                x.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-            });
-
-#if DEBUG
-            services.AddCors();
-#endif
-
-            services.AddDbContext<MovimentacaoFinanceiraContexto>(optios => optios.UseSqlServer(Configuration.GetConnectionString("ByCodersConnection")).EnableSensitiveDataLogging());
-
-            services.AddScoped<MovimentacaoFinanceiraContexto, MovimentacaoFinanceiraContexto>();
-            services.AddTransient<IUow, Uow>();
-
-            services.AddTransient<IMovimentacaoFinanceiraRepositorio, MovimentacaoFinanceiraRepositorio>();
-            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
-
-            services.AddTransient<CriarMovimentacaoFinanceiraComandoManipulador, CriarMovimentacaoFinanceiraComandoManipulador>();
-            services.AddTransient<ListarMovimentacaoFinanceiraComandoManipulador, ListarMovimentacaoFinanceiraComandoManipulador>();
-            services.AddTransient<LoginMovimentacaoFinanceiraComandoManipulador, LoginMovimentacaoFinanceiraComandoManipulador>();
-
             var key = Encoding.ASCII.GetBytes(Configuracoes.ChaveSecreta);
             services.AddAuthentication(x =>
             {
@@ -68,9 +45,31 @@ namespace ByCoders.ParseCNAB.API
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddCors();
+            services.AddControllers();
+
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "MovimentaÃ§Ã£o Financeira - ByCoders_", Version = "v1" });
+                x.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            });
+
+            services.AddDbContext<MovimentacaoFinanceiraContexto>(optios => optios.UseSqlServer(Configuration.GetConnectionString("ByCodersConnection")).EnableSensitiveDataLogging());
+
+            services.AddScoped<MovimentacaoFinanceiraContexto, MovimentacaoFinanceiraContexto>();
+            services.AddTransient<IUow, Uow>();
+
+            services.AddTransient<IMovimentacaoFinanceiraRepositorio, MovimentacaoFinanceiraRepositorio>();
+            services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
+
+            services.AddTransient<CriarMovimentacaoFinanceiraComandoManipulador, CriarMovimentacaoFinanceiraComandoManipulador>();
+            services.AddTransient<ListarMovimentacaoFinanceiraComandoManipulador, ListarMovimentacaoFinanceiraComandoManipulador>();
+            services.AddTransient<LoginMovimentacaoFinanceiraComandoManipulador, LoginMovimentacaoFinanceiraComandoManipulador>();
 
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
@@ -86,17 +85,13 @@ namespace ByCoders.ParseCNAB.API
                 app.UseDeveloperExceptionPage();
             }
 
-#if DEBUG
-            app.UseCors(x =>
-            {
-                x.AllowAnyHeader();
-                x.AllowAnyMethod();
-                x.AllowAnyOrigin();
-            });
-#endif
-
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();

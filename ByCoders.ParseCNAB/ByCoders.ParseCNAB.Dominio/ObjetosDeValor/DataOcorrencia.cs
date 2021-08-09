@@ -6,7 +6,6 @@ namespace ByCoders.ParseCNAB.Dominio.ObjetosDeValor
 {
     public class DataOcorrencia : Notifiable <Notification>
     {
-        // TODO: 1- ADICIONAR FLUNT PARA NOTIFICAÇÕES (validações no construtor); 
         protected DataOcorrencia() { }
 
         public DataOcorrencia(int segundo, int minuto, int hora, int dia, int mes, int ano)
