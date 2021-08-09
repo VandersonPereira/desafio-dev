@@ -6,10 +6,9 @@ namespace ByCoders.ParseCNAB.Dominio.Entidades
 {
     public class MovimentacaoFinanaceira : EntidadeGenerica
     {
-        protected MovimentacaoFinanaceira(int id) : base (id) { }
+        protected MovimentacaoFinanaceira() { }
 
-        public MovimentacaoFinanaceira(int id, int tipoTransacaoId, DataOcorrencia dataOcorrencia, decimal valor, CPF cpf, string cartao, string donoLoja, string nomeLoja)
-            : base (id)
+        public MovimentacaoFinanaceira(int tipoTransacaoId, DataOcorrencia dataOcorrencia, decimal valor, CPF cpf, string cartao, string donoLoja, string nomeLoja)
         {
             TipoTransacaoId = tipoTransacaoId;
             DataOcorrencia = dataOcorrencia;

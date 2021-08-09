@@ -13,6 +13,7 @@ namespace ByCoders.ParseCNAB.Dados.Contextos
             : base(opcoes) { }
 
         public DbSet<MovimentacaoFinanaceira> MovimentacoesFinanceiras { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<TipoTransacao> TiposTransacao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,6 +22,7 @@ namespace ByCoders.ParseCNAB.Dados.Contextos
             modelBuilder.Ignore<DataOcorrencia>();
             modelBuilder.Ignore<CPF>();
             modelBuilder.ApplyConfiguration(new MovimentacaoFinanceiraMapeamento());
+            modelBuilder.ApplyConfiguration(new UsuarioMapeamento());
             modelBuilder.ApplyConfiguration(new TipoTransacaoMapeamento());
 
             modelBuilder.SeeData();

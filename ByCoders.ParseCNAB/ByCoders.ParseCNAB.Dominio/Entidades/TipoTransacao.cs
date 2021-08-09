@@ -5,8 +5,14 @@ namespace ByCoders.ParseCNAB.Dominio.Entidades
 {
     public class TipoTransacao : EntidadeGenerica
     {
-        protected TipoTransacao(int id) : base(id) { }
+        protected TipoTransacao() { }
         public TipoTransacao(int id, string descricao, ENatureza natureza) : base(id)
+        {
+            Descricao = descricao;
+            Natureza = natureza;
+        }
+
+        public TipoTransacao(string descricao, ENatureza natureza)
         {
             Descricao = descricao;
             Natureza = natureza;

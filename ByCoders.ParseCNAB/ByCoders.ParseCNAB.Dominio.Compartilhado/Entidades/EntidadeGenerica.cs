@@ -1,15 +1,10 @@
 ﻿using Flunt.Notifications;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ByCoders.ParseCNAB.Dominio.Compartilhado.Entidades
 {
     public class EntidadeGenerica : Notifiable<Notification>
     {
-        // TODO: 2 - LIMPAR USINGS 
-
-        public EntidadeGenerica(int id)
+        public EntidadeGenerica(int id = 0)
         {
             Id = id;
         }

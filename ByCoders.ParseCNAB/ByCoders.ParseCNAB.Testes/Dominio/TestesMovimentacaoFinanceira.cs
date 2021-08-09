@@ -18,7 +18,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
 
         public TestesMovimentacaoFinanceira()
         {
-            _dataOcorrenciaCorreta = new DataOcorrencia(25, 10, 5, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+            _dataOcorrenciaCorreta = new DataOcorrencia(25, 10, DateTime.Now.Hour, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
             _dataOcorrenciaIncorreta = new DataOcorrencia(25, 10, 5, 14, DateTime.Now.Month + 1, DateTime.Now.Year);
             _CPFCorreto = new CPF("99056171089");
             _CPFIncorreto = new CPF("99056171080");
@@ -32,7 +32,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
         [Trait("Movimentação Financeira", "Teste CPF Errado")]
         public void DadoUmCPFErradoDeveRetornarUmaNotificacao()
         {
-            var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, 2, _dataOcorrenciaCorreta, 25, _CPFIncorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
+            var movimentacaoFinanceira = new MovimentacaoFinanaceira(2, _dataOcorrenciaCorreta, 25, _CPFIncorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
             Assert.Equal(1, movimentacaoFinanceira.Notifications.Count);
         }
 
@@ -40,7 +40,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
         [Trait("Movimentação Financeira", "Teste Data Superior a atual")]
         public void DadoUmaDataSuperiorAAtualDeveRetornarUmaNotificacao()
         {
-            var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, 2, _dataOcorrenciaIncorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
+            var movimentacaoFinanceira = new MovimentacaoFinanaceira(2, _dataOcorrenciaIncorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
             Assert.Equal(1, movimentacaoFinanceira.Notifications.Count);
         }
 
@@ -48,7 +48,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
         [Trait("Movimentação Financeira", "Teste Nome Dono Loja Errado")]
         public void DadoUmNomeDonoLojaErradoDeveRetornarUmaNotificacao()
         {
-            var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, 2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaIncorreto, _nomeLojaCorreto);
+            var movimentacaoFinanceira = new MovimentacaoFinanaceira(2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaIncorreto, _nomeLojaCorreto);
             Assert.Equal(1, movimentacaoFinanceira.Notifications.Count);
         }
 
@@ -56,7 +56,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
         [Trait("Movimentação Financeira", "Teste Nome Loja Errado")]
         public void DadoUmNomeLojaErradoDeveRetornarUmaNotificacao()
         {
-            var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, 2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaIncorreto);
+            var movimentacaoFinanceira = new MovimentacaoFinanaceira(2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaIncorreto);
             Assert.Equal(1, movimentacaoFinanceira.Notifications.Count);
         }
 
@@ -64,7 +64,7 @@ namespace ByCoders.ParseCNAB.Testes.Dominio
         [Trait("Movimentação Financeira", "Teste Entidade Correta")]
         public void DadoUmaMovimentacaoCorretaNaoDeveRetornarNotificacao()
         {
-            var movimentacaoFinanceira = new MovimentacaoFinanaceira(0, 2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
+            var movimentacaoFinanceira = new MovimentacaoFinanaceira(2, _dataOcorrenciaCorreta, 25, _CPFCorreto, "256541225", _nomeDonoLojaCorreto, _nomeLojaCorreto);
             Assert.True(movimentacaoFinanceira.IsValid);
         }
     }

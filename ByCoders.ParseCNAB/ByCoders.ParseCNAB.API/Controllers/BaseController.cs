@@ -18,9 +18,10 @@ namespace ByCoders.ParseCNAB.API.Controllers
             _uow = uow;
         }
 
+        [NonAction]
         public async Task<IActionResult> Resposta(object resultado, IEnumerable<Notification> notificaoes)
         {
-            if (!notificaoes.Any() || resultado == null)
+            if (!notificaoes.Any() && (resultado == null || resultado != null))
             {
                 try
                 {
